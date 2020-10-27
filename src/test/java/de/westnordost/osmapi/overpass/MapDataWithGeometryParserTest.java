@@ -32,7 +32,7 @@ public class MapDataWithGeometryParserTest
 		assertEquals(pos, node.getPosition());
 		assertEquals(5, node.getId());
 		assertEquals(-1, node.getVersion());
-		assertNull(node.getTags());
+		assertEquals(0,node.getTags().size());
 	}
 
 	@Test public void parsesOptionalNodeAttributes()
@@ -71,7 +71,7 @@ public class MapDataWithGeometryParserTest
 
 		assertEquals(5, way.getId());
 		assertEquals(-1, way.getVersion());
-		assertNull(way.getTags());
+		assertEquals(0,way.getTags().size());
 		assertEquals(Arrays.asList(2L,3L), way.getNodeIds());
 
 		List<LatLon> ps = Arrays.<LatLon>asList(new OsmLatLon(1.0, 2.0), new OsmLatLon(3.0, 4.0));
@@ -135,7 +135,7 @@ public class MapDataWithGeometryParserTest
 
 		assertEquals(10, relation.getId());
 		assertEquals(-1, relation.getVersion());
-		assertNull(relation.getTags());
+		assertEquals(0,relation.getTags().size());
 		assertEquals(Arrays.asList(
 			new OsmRelationMember(4, "", Element.Type.RELATION),
 			new OsmRelationMember(1, "outer", Element.Type.WAY),
