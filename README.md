@@ -16,7 +16,7 @@ dependencies {
     implementation 'de.westnordost:osmapi-overpass:1.3'
 }
 
-configuration {
+configurations {
     // already included in Android
     all*.exclude group: 'net.sf.kxml', module: 'kxml2'
     
