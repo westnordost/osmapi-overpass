@@ -20,18 +20,18 @@ import java.net.URLEncoder;
 import java.nio.charset.Charset;
 
 /** Get map data from the overpass api. Always expects XMl output in the queries. */
-public class OverpassMapDataDao
+public class OverpassMapDataApi
 {
 	private final OsmConnection osm;
 	private final MapDataFactory mapDataFactory;
 
-	public OverpassMapDataDao(@NotNull OsmConnection osm, @NotNull MapDataFactory mapDataFactory)
+	public OverpassMapDataApi(@NotNull OsmConnection osm, @NotNull MapDataFactory mapDataFactory)
 	{
 		this.osm = osm;
 		this.mapDataFactory = mapDataFactory;
 	}
 
-	public OverpassMapDataDao(@NotNull OsmConnection osm)
+	public OverpassMapDataApi(@NotNull OsmConnection osm)
 	{
 		this(osm, new OsmMapDataFactory());
 	}

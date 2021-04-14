@@ -3,12 +3,10 @@ package de.westnordost.osmapi.overpass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.time.Instant;
 import java.util.Arrays;
-import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
-import java.util.TimeZone;
 
 import de.westnordost.osmapi.map.OsmMapDataFactory;
 import de.westnordost.osmapi.map.data.*;
@@ -41,10 +39,7 @@ public class MapDataWithGeometryParserTest
 		Node node = parse(xml).nodes.get(0);
 
 		assertEquals(3, node.getVersion());
-
-		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.UK);
-		c.set(2019, Calendar.MARCH, 28, 21, 43, 50);
-		assertEquals(c.getTimeInMillis() / 1000, node.getDateEdited().getTime() / 1000);
+		assertEquals(Instant.parse("2019-03-28T21:43:50Z"), node.getEditedAt());
 	}
 
 	@Test public void parsesNodeTags()
@@ -91,10 +86,7 @@ public class MapDataWithGeometryParserTest
 		Way way = parse(xml).waysWithGeometry.get(0).way;
 
 		assertEquals(3, way.getVersion());
-
-		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.UK);
-		c.set(2019, Calendar.MARCH, 28, 21, 43, 50);
-		assertEquals(c.getTimeInMillis() / 1000, way.getDateEdited().getTime() / 1000);
+		assertEquals(Instant.parse("2019-03-28T21:43:50Z"), way.getEditedAt());
 	}
 
 	@Test public void parsesWayTags()
@@ -162,10 +154,7 @@ public class MapDataWithGeometryParserTest
 		Relation relation = parse(xml).relationsWithGeometry.get(0).relation;
 
 		assertEquals(3, relation.getVersion());
-
-		Calendar c = Calendar.getInstance(TimeZone.getTimeZone("UTC"), Locale.UK);
-		c.set(2019, Calendar.MARCH, 28, 21, 43, 50);
-		assertEquals(c.getTimeInMillis() / 1000, relation.getDateEdited().getTime() / 1000);
+		assertEquals(Instant.parse("2019-03-28T21:43:50Z"), relation.getEditedAt());
 	}
 
 	@Test public void parsesRelationTags()
