@@ -4,16 +4,19 @@ osmapi-overpass is a client for the [Overpass API](https://wiki.openstreetmap.or
 
 ## Copyright and License
 
-© 2019-2020 Tobias Zwick. This library is released under the terms of the [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl-3.0.html) (LGPL).
+© 2019-2021 Tobias Zwick. This library is released under the terms of the [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl-3.0.html) (LGPL).
 
 ## Installation
 
-Add [`de.westnordost:osmapi-overpass:1.3`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/1.3) as a Maven dependency or download the jar from there.
+Add [`de.westnordost:osmapi-overpass:2.0`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/2.0) as a Maven dependency or download the jar from there.
+
+### Android
+
 On Android, you need to exclude kxml2 from the dependencies since it is already built-in, like so:
 
 ```gradle
 dependencies {
-    implementation 'de.westnordost:osmapi-overpass:1.3'
+    implementation 'de.westnordost:osmapi-overpass:2.0'
 }
 
 configurations {
@@ -28,13 +31,20 @@ configurations {
 }
 ```
 
+Also, starting with v2.0, this library uses the classes from the Java 8 time API, like [`Instant`](https://developer.android.com/reference/java/time/Instant) etc. instead of `Date` which [leads to about 50% faster parsing times](https://github.com/streetcomplete/StreetComplete/discussions/2740) when receiving a result.
+
+If your app supports Android API levels below 26, you have two options:
+
+1. Either stick to using version 1.x of this library...
+2. ...or enable [Java 8+ API desugaring support](https://developer.android.com/studio/write/java8-support#library-desugaring) for your app
+
 ## Example Usage
 
-First, initialize the `OverpassMapDataDao`
+First, initialize the `OverpassMapDataApi`
 
 ```java
 	OsmConnection connection = new OsmConnection("https://overpass-api.de/api/", "my user agent");
-	OverpassMapDataDao overpass = new OverpassMapDataDao(connection);
+	OverpassMapDataApi overpass = new OverpassMapDataApi(connection);
 ```
 
 then...
@@ -73,3 +83,5 @@ then...
         "[bbox:13.8,35.5,14.9,36.3]; nwr[shop]; out count;"
     );
 ```
+
+The query string is just passed through to the Overpass API. For how the query string needs to look like, consult the [documentation for Overpass API Query Language](https://wiki.openstreetmap.org/wiki/Overpass_API/Overpass_QL).
