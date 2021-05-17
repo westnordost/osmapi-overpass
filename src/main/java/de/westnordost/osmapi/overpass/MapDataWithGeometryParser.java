@@ -5,15 +5,14 @@ import org.jetbrains.annotations.NotNull;
 import java.io.IOException;
 import java.io.InputStream;
 import java.text.ParseException;
+import java.time.Instant;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 
 import de.westnordost.osmapi.ApiResponseReader;
-import de.westnordost.osmapi.common.OsmXmlDateFormat;
 import de.westnordost.osmapi.common.XmlParser;
 import de.westnordost.osmapi.map.MapDataFactory;
 import de.westnordost.osmapi.map.data.BoundingBox;
@@ -45,13 +44,12 @@ public class MapDataWithGeometryParser extends XmlParser implements ApiResponseR
 			TAG = "tag",
 			BOUNDS = "bounds";
 
-	private final OsmXmlDateFormat dateFormat = new OsmXmlDateFormat();
 	private final MapDataFactory factory;
 	private final MapDataWithGeometryHandler handler;
 
 	private long id;
 	private int version;
-	private Date timestamp;
+	private Instant timestamp;
 	private Double lat;
 	private Double lon;
 	private Map<String, String> tags;
@@ -166,12 +164,12 @@ public class MapDataWithGeometryParser extends XmlParser implements ApiResponseR
 		timestamp = parseDate();
 	}
 
-	private Date parseDate() throws ParseException
+	private Instant parseDate()
 	{
 		String timestamp = getAttribute("timestamp");
 		if(timestamp == null) return null;
 
-		return dateFormat.parse(timestamp);
+		return Instant.parse(timestamp);
 	}
 
 	@Override protected void onEndElement()

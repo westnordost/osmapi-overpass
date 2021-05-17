@@ -28,7 +28,7 @@ public class CsvParser implements ApiResponseReader<Void>
 
 	public CsvParser(@NotNull Handler<String[]> handler) { this(handler, DEFAULT_SEPARATOR); }
 
-	@NotNull @Override public Void parse(InputStream in) throws Exception
+	@Override public Void parse(InputStream in) throws Exception
 	{
 		try(BufferedReader reader = new BufferedReader(new InputStreamReader(in, "UTF-8")))
 		{
