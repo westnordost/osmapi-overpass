@@ -4,11 +4,11 @@ osmapi-overpass is a client for the [Overpass API](https://wiki.openstreetmap.or
 
 ## Copyright and License
 
-© 2019-2021 Tobias Zwick. This library is released under the terms of the [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl-3.0.html) (LGPL).
+© 2019-2023 Tobias Zwick. This library is released under the terms of the [GNU Lesser General Public License](http://www.gnu.org/licenses/lgpl-3.0.html) (LGPL).
 
 ## Installation
 
-Add [`de.westnordost:osmapi-overpass:2.0`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/2.0) as a Maven dependency or download the jar from there.
+Add [`de.westnordost:osmapi-overpass:2.1`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/2.0) as a Maven dependency or download the jar from there.
 
 ### Android
 
@@ -16,7 +16,7 @@ On Android, you need to exclude kxml2 from the dependencies since it is already 
 
 ```gradle
 dependencies {
-    implementation 'de.westnordost:osmapi-overpass:2.0'
+    implementation 'de.westnordost:osmapi-overpass:2.1'
 }
 
 configurations {
