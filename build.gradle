@@ -4,7 +4,7 @@ apply plugin: 'signing'
 
 group = "de.westnordost"
 archivesBaseName = "osmapi-overpass"
-version = 2.2
+version = 2.3
 description = 'Overpass API client - Querying map data from the overpass API and checking request quota'
 
 sourceCompatibility = 1.8
@@ -17,7 +17,7 @@ repositories {
 
 dependencies {
 	compile 'de.westnordost:osmapi-core:2.0'
-	compile 'de.westnordost:osmapi-map:2.2'
+	compile 'de.westnordost:osmapi-map:2.3'
 	compile 'org.jetbrains:annotations-java5:18.0.0'
 	testCompile 'junit:junit:4.13.2'
 }
