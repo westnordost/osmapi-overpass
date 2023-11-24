@@ -8,36 +8,22 @@ osmapi-overpass is a client for the [Overpass API](https://wiki.openstreetmap.or
 
 ## Installation
 
-Add [`de.westnordost:osmapi-overpass:2.3`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/2.0) as a Maven dependency or download the jar from there.
+Add [`de.westnordost:osmapi-overpass:3.0`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/2.0) as a Maven dependency or download the jar from there.
 
 ### Android
 
-On Android, you need to exclude kxml2 from the dependencies since it is already built-in, like so:
-
-```gradle
-dependencies {
-    implementation 'de.westnordost:osmapi-overpass:2.3'
-}
-
+On Android, you need to exclude kxml2 from the dependencies in your `gradle.kts` since it is already built-in, like so:
+```kotlin
 configurations {
-    // already included in Android
-    all*.exclude group: 'net.sf.kxml', module: 'kxml2'
-    
-    // @NonNull etc annotations are also already included in Android
-    cleanedAnnotations
-    compile.exclude group: 'org.jetbrains', module:'annotations'
-    compile.exclude group: 'com.intellij', module:'annotations'
-    compile.exclude group: 'org.intellij', module:'annotations'
-    compile.exclude group: 'xmlpull', module:'xmlpull'
+    all {
+        // it's already included in Android
+        exclude(group = "net.sf.kxml", module = "kxml2")
+        exclude(group = "xmlpull", module = "xmlpull")
+    }
 }
 ```
 
-Also, starting with v2.0, this library uses the classes from the Java 8 time API, like [`Instant`](https://developer.android.com/reference/java/time/Instant) etc. instead of `Date` which [leads to about 50% faster parsing times](https://github.com/streetcomplete/StreetComplete/discussions/2740) when receiving a result.
-
-If your app supports Android API levels below 26, you have two options:
-
-1. Either stick to using version 1.x of this library...
-2. ...or enable [Java 8+ API desugaring support](https://developer.android.com/studio/write/java8-support#library-desugaring) for your app
+This library uses classes from the Java 8 time API, like [`Instant`](https://developer.android.com/reference/java/time/Instant) etc., so if your app supports Android API levels below 26, you need to enable [Java 8+ API desugaring support](https://developer.android.com/studio/write/java8-support#library-desugaring).
 
 ## Example Usage
 
