@@ -8,7 +8,7 @@ osmapi-overpass is a client for the [Overpass API](https://wiki.openstreetmap.or
 
 ## Installation
 
-Add [`de.westnordost:osmapi-overpass:3.0`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/2.0) as a Maven dependency or download the jar from there.
+Add [`de.westnordost:osmapi-overpass:3.0`](https://mavenrepository.com/artifact/de.westnordost/osmapi-overpass/3.0) as a Maven dependency or download the jar from there.
 
 ### Android
 
